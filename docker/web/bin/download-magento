@@ -2,7 +2,7 @@
 chown -R www-data:www-data /var/www/html
 
 su www-data <<EOSU
-    composer create-project -vvv --repository=https://repo.magento.com/ magento/project-community-edition $INSTALL_DIR $MAGENTO_VERSION
+    composer create-project --repository=https://repo.magento.com/ magento/project-community-edition $INSTALL_DIR $MAGENTO_VERSION
 EOSU
 
 cd $INSTALL_DIR \
