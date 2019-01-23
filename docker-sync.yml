@@ -1,0 +1,24 @@
+version: "2"
+
+options:
+  verbose: true
+  max_attempt: 300
+
+syncs:
+  web-sync:
+    notify_terminal: true
+    src: './src'
+    # sync_strategy: 'unison'
+    sync_excludes: [
+      'Path .git',
+      'Name .gitignore',
+      'BelowPath node_modules',
+      'BelowPath bower_components',
+      'BelowPath sass-cache',
+      'BelowPath .sass-cache',
+      'Path var/cache',
+      'Path var/page_cache',
+      'Path var/session',
+      'BelowPath .DS_Store'
+    ]
+    sync_userid: '33'
