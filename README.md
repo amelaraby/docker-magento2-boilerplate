@@ -8,4 +8,4 @@
 5. docker-compose exec web install-magento
 
 #Optional
-6. docker-compose exec web install-magento
+6. docker-compose exec web install-sampledata
