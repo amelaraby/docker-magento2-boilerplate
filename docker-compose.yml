@@ -6,7 +6,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - web-sync:/var/www/html:nocopy,delegated
+      - web-sync:/var/www/html:nocopy
       - ~/.composer:/var/www/.composer
     environment:
       - MAGENTO_LANGUAGE=en_US
@@ -22,6 +22,8 @@ services:
       - MAGENTO_ADMIN_EMAIL=admin@example.com
       - MAGENTO_ADMIN_USERNAME=admin
       - MAGENTO_ADMIN_PASSWORD=magentorocks1
+      - XDEBUG_CONFIG=remote_host=192.168.1.3
+      - PHP_IDE_CONFIG=serverName=docker
 
   db:
     build: ./docker/mysql

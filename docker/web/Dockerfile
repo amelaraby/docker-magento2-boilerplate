@@ -10,7 +10,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 COPY ./config/auth.json $COMPOSER_HOME
 
-RUN requirements="libjpeg-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype6 libfreetype6-dev libicu-dev libxslt1-dev libxslt1.1 cron unzip nano" \
+RUN requirements="libjpeg-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype6 libfreetype6-dev libicu-dev libxslt1-dev libxslt1.1 cron unzip nano git" \
     && apt-get update \
     && apt-get install -y $requirements \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
@@ -23,8 +23,9 @@ RUN yes '' | pecl install mcrypt-1.0.1 && \
 RUN yes '' | pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_connect_back=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_autostart=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.max_nesting_level=1000" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

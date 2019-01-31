@@ -1,7 +1,7 @@
 version: "2"
 
 options:
-  verbose: true
+  verbose: false
   max_attempt: 300
 
 syncs:
